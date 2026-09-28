@@ -30,7 +30,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`} aria-label="Main navigation">
+    <nav className={`navbar ${(scrolled || menuOpen) ? 'scrolled' : ''}`} aria-label="Main navigation">
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 64 }}>
           {/* Logo */}
@@ -64,7 +64,7 @@ export default function Navbar() {
           </a>
 
           {/* Desktop nav */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 4 }} className="hidden-mobile">
+          <div style={{ gap: 4 }} className="hidden-mobile">
             {navLinks.map(link => (
               <a
                 key={link.label}
@@ -88,7 +88,7 @@ export default function Navbar() {
           </div>
 
           {/* Desktop CTA buttons */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }} className="hidden-mobile">
+          <div style={{ gap: 8 }} className="hidden-mobile">
             <a
               href={personal.github}
               target="_blank"
@@ -122,8 +122,6 @@ export default function Navbar() {
               padding: 8,
               cursor: 'pointer',
               color: 'var(--color-text-secondary)',
-              display: 'flex',
-              alignItems: 'center',
             }}
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={menuOpen}
@@ -182,11 +180,11 @@ export default function Navbar() {
       </div>
 
       <style>{`
-        .hidden-mobile { display: flex; }
+        .hidden-mobile { display: flex; align-items: center; }
         .mobile-only { display: none; }
         @media (max-width: 768px) {
           .hidden-mobile { display: none !important; }
-          .mobile-only { display: flex !important; }
+          .mobile-only { display: flex !important; align-items: center; }
         }
       `}</style>
     </nav>
